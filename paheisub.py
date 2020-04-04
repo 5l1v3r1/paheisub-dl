@@ -182,7 +182,7 @@ def bypass(link):
 	dlink=bs2.find('a',{'title':'Download'})['href']
 
 	try:
-		download(dlink,f"{info['title'][pil-1][1]}{info['resu'][lih-1][0]}.mkv")
+		download(dlink,f"{info['title'][pil-1][1]}{info['resu'][lih-1][1]}.mkv")
 	except:
 		yahh=input(":( Download GAGAL\nApakah anda ingin mendownload di websitenya? (y/n) ")
 		if yahh.lower() == 'y':
