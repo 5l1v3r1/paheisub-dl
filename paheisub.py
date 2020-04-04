@@ -81,7 +81,7 @@ def subdl(q):
 			print("index out of ranges")
 			return True
 
-		download("https://isubtitles.org"+sdl[ice-1], uli[cho-1].replace('/','')+".zip")
+		download("https://isubtitles.org"+sdl[ice-1], x.text.strip()[:50]+"-subtitle.zip")
 	except Exception as Er:
 		print(Er)
 
@@ -114,6 +114,7 @@ def search(q):
 	getres(info['title'][pil-1][0])
 
 def getres(url):
+	global lih
 	mylist1=[]
 	mylist2=[]
 	req=ses.get(url)
@@ -129,10 +130,14 @@ def getres(url):
 		mylist2+=ti
 
 	if len(mylist1)==0:
-			yahh=input(":( URL yang dapat kami bypass tidak tersedia\nApakah anda ingin mendownload di websitenya? (y/n) ")
-			if yahh.lower() == 'y':
-				click.launch(url)
-			return True
+		for y in hsl:
+			ur=[i['href'] for i in y.find_all('a',{'class':'shortc-button small white'})]
+			mylist1+=ur
+			if len(mylist1)==0:
+				yahh=input(":( URL yang dapat kami bypass tidak tersedia\nApakah anda ingin mendownload di websitenya? (y/n) ")
+				if yahh.lower() == 'y':
+					click.launch(url)
+				return True
 
 	cc=1
 	print("\n\t[ Resulution ]")
@@ -177,7 +182,7 @@ def bypass(link):
 	dlink=bs2.find('a',{'title':'Download'})['href']
 
 	try:
-		download(dlink,info['title'][pil-1][1]+".mkv")
+		download(dlink,f"{info['title'][pil-1][1]}{info['resu'][lih-1][0]}.mkv")
 	except:
 		yahh=input(":( Download GAGAL\nApakah anda ingin mendownload di websitenya? (y/n) ")
 		if yahh.lower() == 'y':
@@ -244,8 +249,8 @@ version = {__version}
 			for x in info['resu']:
 				print(f"{co}. {x[1]}")
 				co+=1
-			lih=int(input("_> pilih: "))
-			lnk=info['resu'][lih-1][0]
+			lih2=int(input("_> pilih: "))
+			lnk=info['resu'][lih2-1][0]
 			info['resu']=""
 			try:
 				bypass(lnk)
