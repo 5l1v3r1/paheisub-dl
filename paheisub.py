@@ -81,7 +81,7 @@ def subdl(q):
 			print("index out of ranges")
 			return True
 
-		download("https://isubtitles.org"+sdl[ice-1], x.text.strip()[:50]+"-subtitle.zip")
+		download("https://isubtitles.org"+sdl[ice-1], mr[ice-1].text.strip()[:50]+"-subtitle.zip")
 	except Exception as Er:
 		print(Er)
 
@@ -182,7 +182,7 @@ def bypass(link):
 	dlink=bs2.find('a',{'title':'Download'})['href']
 
 	try:
-		download(dlink,f"{info['title'][pil-1][1]}{info['resu'][lih-1][1]}.mkv")
+		download(dlink,f"{info['title'][pil-1][1]} ({info['resu'][lih-1][1]}).mkv")
 	except:
 		yahh=input(":( Download GAGAL\nApakah anda ingin mendownload di websitenya? (y/n) ")
 		if yahh.lower() == 'y':
