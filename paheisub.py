@@ -251,7 +251,7 @@ version = {__version}
 				co+=1
 			lih2=int(input("_> pilih: "))
 			lnk=info['resu'][lih2-1][0]
-			info['resu']=""
+#			info['resu']=""
 			try:
 				bypass(lnk)
 			except:
