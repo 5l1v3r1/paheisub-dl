@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup as Bs
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
-__version="v0.1 (BETA)"
+__version="v0.1a (BETA)"
 
 if len(sys.argv) > 1 and sys.argv[1] == '--debug':
 	print("\033[93mMODE DEBUG: TRUE\033[97m".center(45))
@@ -233,7 +233,7 @@ version = {__version}
 			c()
 			print(banner)
 			info['title']=[]
-			info['judul']=[]
+			info['resu']=[]
 			que=input("[Film] Judul: ")
 			search(que)
 		elif tany.lower() == 's':
@@ -251,7 +251,6 @@ version = {__version}
 				co+=1
 			lih2=int(input("_> pilih: "))
 			lnk=info['resu'][lih2-1][0]
-#			info['resu']=""
 			try:
 				bypass(lnk)
 			except:
