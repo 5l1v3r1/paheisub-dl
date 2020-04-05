@@ -13,8 +13,17 @@ python -m pip install requests click tqdm bs4
 
 # changelog
 <ul>
-  <li>v0.1 (BETA Version)</li>
-    <ul>
-      <li>Beta release</li>
-  </ul>
+
+<li>v0.1a (BETA Version)
+<ul>
+ <li>Fix typo(s)</li>
+</ul>
+</li>
+
+<li>v0.1 (BETA Version)
+<ul>
+ <li>Beta release</li>
+</ul>
+</li>
+
 </ul>
