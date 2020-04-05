@@ -20,25 +20,30 @@ ses.mount('https://', HTTPAdapter(max_retries=retries))
 
 ############################################
 def download(url,judul):
-	r = ses.get(url, stream=True)
-	total_size = int(r.headers.get('content-length', 0))
-	print(f"\n# Downloading {judul}")
-#	print(f"['{url}']")
-	block_size = 1024
-	t=tqdm(total=total_size, unit='iB', unit_scale=True)
-	with open(f'result/{judul.replace("/",",")}','wb') as f:
-		for data in r.iter_content(chunk_size=block_size):
-			if data:
-				t.update(len(data))
-				f.write(data)
-	t.close()
-	if total_size != 0 and t.n != total_size:
+	try:
+		r = ses.get(url, stream=True)
+		total_size = int(r.headers.get('content-length', 0))
+		print(f"\n# Downloading {judul}")
+#		print(f"['{url}']")
+		block_size = 1024
+		t=tqdm(total=total_size, unit='iB', unit_scale=True)
+		with open(f'result/{judul.replace("/",",")}','wb') as f:
+			for data in r.iter_content(chunk_size=block_size):
+				if data:
+					t.update(len(data))
+					f.write(data)
+		t.close()
+		if total_size != 0 and t.n != total_size:
+			print("\n[Warn] Download GAGAL")
+			tan=input("[?] Anda ingin melanjutkannya ke website (y/n) ")
+			if tan.lower() == 'y':
+				click.launch(url)
+	except:
+		t.close()
 		print("\n[Warn] Download GAGAL")
-		tan=input("[?] anda ingin melanjutkannya ke website (y/n) ")
+		tan=input("[?] Anda ingin melanjutkannya ke wbsite (y/n) ")
 		if tan.lower() == 'y':
 			click.launch(url)
-		else:
-			sys.exit("okay bye bye:*")
 ###########################################
 
 #subtitle downloader
@@ -181,12 +186,7 @@ def bypass(link):
 	bs2=Bs(reqs2.text,'html.parser')
 	dlink=bs2.find('a',{'title':'Download'})['href']
 
-	try:
-		download(dlink,f"{info['title'][pil-1][1]} ({info['resu'][lih-1][1]}).mkv")
-	except:
-		yahh=input(":( Download GAGAL\nApakah anda ingin mendownload di websitenya? (y/n) ")
-		if yahh.lower() == 'y':
-			click.launch(url2)
+	download(dlink,f"{info['title'][pil-1][1]} ({info['resu'][lih-1][1]}).mkv")
 
 
 if __name__ == '__main__':
